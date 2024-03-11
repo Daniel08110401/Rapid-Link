@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import morgan from 'morgan' 
 import bodyParser from "body-parser"; 
 import cookieParser from "cookie-parser";
+import errorHandler from "./middleware/error";
 dotenv.config();
 
 const app = express()
@@ -34,9 +35,15 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 // to make request to the backend
 // to allow application to use backend api to access to the server
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
+// Error Middleware
+app.use(errorHandler);
+
+app.get("/", (req, res) => {
+    res.json("Hello this is backend")
+});
 
 
 // this message will appear on the console if the backend server is connected
