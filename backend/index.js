@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import bodyParser from "body-parser"; 
 import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error.js";
+import authRoutes from "./routes/authRoutes.js"
 
 const app = express()
 const port = process.env.PORT || 9000
@@ -39,10 +40,16 @@ app.use(cookieParser());
 // to allow application to use backend api to access to the server
 app.use(cors());
 app.use(express.json());
-
-
 // error middleware
 app.use(errorHandler);
+
+
+// Routes Middleware
+app.get('/', (req, res) => {
+    res.send("Hello from backend");
+});
+
+app.use('/', authRoutes);
 
 
 
