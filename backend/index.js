@@ -6,10 +6,11 @@ import mongoose from "mongoose";
 import morgan from 'morgan' 
 import bodyParser from "body-parser"; 
 import cookieParser from "cookie-parser";
-dotenv.config();
+import errorHandler from "./middleware/error.js";
 
 const app = express()
 const port = process.env.PORT || 9000
+dotenv.config();
 
 
 // DB connection
@@ -23,19 +24,25 @@ mongoose.connect(process.env.DATABASE, {
 .catch((err) => console.log(err));
 
 
-//MIDDLEWARE
+// MIDDLEWARES
 app.use(morgan('dev'));
 app.use(bodyParser.json({limit: "5mb"}));
 app.use(bodyParser.urlencoded({
     limit: "5mb",
     extended: true
 }));
+
 // for authentication
 app.use(cookieParser());
+
 // to make request to the backend
 // to allow application to use backend api to access to the server
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+
+
+// error middleware
+app.use(errorHandler);
 
 
 

@@ -1,4 +1,3 @@
-
 class ErrorResponse extends Error {
     constructor(message, codeStatus) {
         super(message);
@@ -6,4 +5,4 @@ class ErrorResponse extends Error {
     }
 }
 
-module.exports = ErrorResponse;
+export default ErrorResponse;
