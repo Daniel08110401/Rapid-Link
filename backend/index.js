@@ -45,10 +45,6 @@ app.use(errorHandler);
 
 
 // Routes Middleware
-app.get('/', (req, res) => {
-    res.send("Hello from backend");
-});
-
 app.use('/', authRoutes);
 
 
