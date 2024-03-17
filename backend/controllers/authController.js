@@ -40,11 +40,23 @@ export const signin = async (req, res) => {
         //check password
         const isMatched = await user.comparePassword(password);
         if (!isMatched) {
+            // if password doesn't match, return the error
             return next(new ErrorResponse("invalid credentials", 400));
         }
+
+        // Send out the tokens: user, statuscode, response
+        sendTokenResponse(user, 200, res);
         
         
     } catch (error) {
         next(error);
     }
 };
+
+const sendTokenResponse = async (user, codeStatus, res) => {
+    const token = await user.getJwtToken();
+    res
+    .status(codeStatus)
+        .cookie('token', token, {maxAge: 60 * 60 * 1000, httpOnly: true})
+        .json({sucess: true, token, user})
+}
