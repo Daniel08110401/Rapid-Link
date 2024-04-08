@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error.js";
 import authRoutes from "./routes/authRoutes.js"
+import userRoutes from './routes/userRoutes.js'
 
 const app = express()
 const port = process.env.PORT || 9000
@@ -40,14 +41,20 @@ app.use(cookieParser());
 // to allow application to use backend api to access to the server
 app.use(cors());
 app.use(express.json());
+
+//=================//
+// Routes Middleware
+//=================//
+
+// Authentication routes
+app.use('/api', authRoutes);
+// User routes
+app.use('/api', userRoutes);
+
+
+
 // error middleware
 app.use(errorHandler);
-
-
-// Routes Middleware
-app.use('/', authRoutes);
-
-
 
 // this message will appear on the console if the backend server is connected
 app.listen(port, () => {

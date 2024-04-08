@@ -16,8 +16,7 @@ export const signup = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
-
+};
 
 
 export const signin = async (req, res) => {
@@ -53,10 +52,33 @@ export const signin = async (req, res) => {
     }
 };
 
+// log out
+export const logout = (req, res, next) => {
+    res.clearCookie('token');
+    res.status(200).json({
+        success: true,
+        message: "logged out"
+    })
+};
+
+
+// user profile
+export const userProfile = async (req, res, next) => {
+
+    const user = await User.findById(req.user.id).select('-password');
+
+    res.status(200).json({
+        success: true,
+        user
+    });
+}
+
+
+
 const sendTokenResponse = async (user, codeStatus, res) => {
     const token = await user.getJwtToken();
     res
-    .status(codeStatus)
+        .status(codeStatus)
         .cookie('token', token, {maxAge: 60 * 60 * 1000, httpOnly: true})
         .json({sucess: true, token, user})
 }
