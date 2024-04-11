@@ -1,7 +1,7 @@
 import express from "express";
 // Make sure the path is correct and matches the named export
 import { signin, signup, logout, userProfile} from "../controllers/authController.js";
-import { isAdmin, isAuthenticated } from '../middleware/auth.js'
+import { isAuthenticated } from '../middleware/auth.js'
 
 const router = express.Router();
 

@@ -19,8 +19,8 @@ export const signup = async (req, res, next) => {
 };
 
 
-export const signin = async (req, res) => {
-    res.send("Hello from Node Js");
+export const signin = async (req, res, next) => {
+    // res.send("Hello from Node Js");
     try {
         const { email, password } = req.body;
         // sign in validation
@@ -58,22 +58,8 @@ export const logout = (req, res, next) => {
     res.status(200).json({
         success: true,
         message: "logged out"
-    })
-};
-
-
-// user profile
-export const userProfile = async (req, res, next) => {
-
-    const user = await User.findById(req.user.id).select('-password');
-
-    res.status(200).json({
-        success: true,
-        user
     });
-}
-
-
+};
 
 const sendTokenResponse = async (user, codeStatus, res) => {
     const token = await user.getJwtToken();
@@ -81,4 +67,16 @@ const sendTokenResponse = async (user, codeStatus, res) => {
         .status(codeStatus)
         .cookie('token', token, {maxAge: 60 * 60 * 1000, httpOnly: true})
         .json({sucess: true, token, user})
-}
+};
+
+
+// user profile
+export const userProfile = async (req, res, next) => {
+    // Express.js, route parameters are stored in req.params, not res.param
+    const user = await User.findById(req.user.id).select('-password');
+
+    res.status(200).json({
+        success: true,
+        user
+    });
+};
