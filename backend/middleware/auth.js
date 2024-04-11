@@ -2,7 +2,7 @@ import ErrorResponse from '../utils/errorResponse.js';
 import jwt from "jsonwebtoken";
 import User from '../models/userModel.js';
 
-// check if the user is authenticated
+// check if the user is authenticated (signed in)
 export const isAuthenticated = async(req, res, next) => {
     const { token } = req.cookies;
 
@@ -24,8 +24,8 @@ export const isAuthenticated = async(req, res, next) => {
 // middleware for admin
 export const isAdmin = async(req, res, next) => {
     if(req.user.role === 0){
-        return next(new ErrorResponse('Not authorized to access to this route', 401))
+        return next(new ErrorResponse('Access denied, you must an admin', 401))
     };
 
-    next(); // go to the next middle ware
+    next(); // go to the next middle ware which is 'allUsers'
 }
