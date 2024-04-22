@@ -5,7 +5,7 @@ import NotFound from './pages/NotFound';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
 
-const App: React.FC = () => {
+const App: React.FC = () => {  
   return (
     <>
       <ThemeProvider theme={theme}>
