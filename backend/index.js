@@ -7,15 +7,21 @@ import morgan from 'morgan'
 import bodyParser from "body-parser"; 
 import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error.js";
-import authRoutes from "./routes/authRoutes.js"
-import userRoutes from './routes/userRoutes.js'
+
+// Import routes //
+//===============//
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import jobTypeRoutes from "./routes/jobTypeRoutes.js"
+import jobRoutes from "./routes/jobRoutes.js";
 
 const app = express()
 const port = process.env.PORT || 9000
 dotenv.config();
 
 
-// DB connection
+// DB connection //
+//===============//
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -26,7 +32,8 @@ mongoose.connect(process.env.DATABASE, {
 .catch((err) => console.log(err));
 
 
-// MIDDLEWARES
+// Middlewares //
+//=============//
 app.use(morgan('dev'));
 app.use(bodyParser.json({limit: "5mb"}));
 app.use(bodyParser.urlencoded({
@@ -42,18 +49,20 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
-//=================//
-// Routes Middleware
-//=================//
 
+// Routes Middleware //
+//===================//
 // Authentication routes
 app.use('/api', authRoutes);
 // User routes
 app.use('/api', userRoutes);
+// Job type routes :  create, update, delete, get
+app.use('/api', jobTypeRoutes);
+// Create job : :  create, update, delete, get
+app.use('/api', jobRoutes);
 
 
-
-// error middleware
+// Error middleware //
 app.use(errorHandler);
 
 // this message will appear on the console if the backend server is connected

@@ -1,13 +1,13 @@
-import JobType from "../models/jobTypeModel";
-import ErrorResponse from "../utils/errorResponse";
+import JobType from "../models/jobTypeModel.js";
+import ErrorResponse from "../utils/errorResponse.js";
 
-//================//
-// Create Job Type//
-//================//
+
+// Create Job Type //
+//=================//
 export const createJobType = async(req, res, next) => {
     try {
         const jobType = await JobType.create({
-            jobTypename : req.body.jobTypename,
+            jobTypeName : req.body.jobTypeName,
             user: req.user.id
         });
         res.status(201).json({
@@ -19,20 +19,25 @@ export const createJobType = async(req, res, next) => {
     };
 };
 
-//================//
-// All Job Category//
-//================//
+
+// All Job Category //
+//==================//
 export const allJobType = async(req, res, next) => {
     try {
+        const jobType = await JobType.find();
+        res.status(200).json({
+            success: true,
+            jobType
+        })
         
     } catch (error) {
-        
+        next(error)
     }
 };
 
-//================//
-//Update Job Type //
-//================//
+
+// Update Job Type //
+//=================//
 export const updateJobtype = async(req, res, next) => {
     try {
         
@@ -41,7 +46,7 @@ export const updateJobtype = async(req, res, next) => {
     }
 };
 
-//================//
+
 // Delete Job Type//
 //================//
 export const deleteJobType = async(req, res, next) => {
