@@ -1,7 +1,7 @@
 import express from "express";
 // Make sure the path is correct and matches the named export
 import { allUsers, singleUser } from "../controllers/userController.js";
-import { isAdmin, isAuthenticated } from '../middleware/auth.js'
+import { isAdmin, isAuthenticated } from "../middleware/auth.js";
 import { editUser, deleteUser } from "../controllers/userController.js";
 
 const router = express.Router();

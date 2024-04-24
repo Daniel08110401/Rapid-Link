@@ -1,23 +1,20 @@
-import mongoose from "mongoose";
-import { ObjectId } from "mongoose.Schema";
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
+const { ObjectId } = Schema.Types;
 
-
-const jobTypeSchema = new mongoose.Schema({
-
+const jobTypeSchema = new Schema({
     jobTypeName: {
         type: String,
         trim: true,
-        required: [true, 'Job category is required'],
+        required: [true, 'job category is required'],
         maxlength: 70,
     },
+    
     user: {
         type: ObjectId,
         ref: "User",
         required: true
     },
+}, { timestamps: true });
 
-
-
-}, { timestamps: true })
-
-export default mongoose.model("JobType", jobTypeSchema);
+export default model("JobType", jobTypeSchema);
