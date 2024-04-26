@@ -25,7 +25,7 @@ router.get("/jobs/show", showJobs);
 
 // All job //
 // /api/jobs
-router.get("/jobs", allJobs)
+router.get("/jobs", allJobs);
 
 
 

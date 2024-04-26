@@ -48,7 +48,7 @@ export const updateJob = async(req, res, next) => {
 
 // Show single job //
 //=================//
-export const singleJob = async(req, res, next) => {
+export const singleJob = async (req, res, next) => {
     try {
         const job = await Job.findById(req.params.id);
 
@@ -63,29 +63,47 @@ export const singleJob = async(req, res, next) => {
 
 // Show  jobs //
 //=================//
-export const showJobs = async(req, res, next) => {
+export const showJobs = async (req, res, next) => {
     
-    // Pagination
-    const pageSize = 5; // number of jobs for each page
-    const page = Number(req.query.pageNumber) || 1;
-    const count = await Job.find({}).estimatedDocumentCount();
+    // Destructure keyword and cat from query for cleaner access
+    const { keyword, cat, pageNumber } = req.query;
 
-    // Search function
-    const keyword = req.query.keyword ? {
+    // Search function //
+    //=================//
+    const keywordFilter = keyword ? {
         title: {
-            $regex: req.query.keyword,
-            $options: 'i'
+            $regex: new RegExp(keyword, 'i') // using RegExp constructor for dynamic patterns
         }
     } : {};
-    
+
+    // Filter function //
+    const jobTypeCategory = await JobType.find({}, '_id'); // shorthand to only fetch _id
+    const ids = jobTypeCategory.map(cat => cat._id); // using map to directly create ids array
+    const categ = cat && cat !== '' ? cat : ids;
+
+    // Pagination
+    const pageSize = 5; // number of jobs per page
+    const page = Number(pageNumber) || 1;
+
     try {
+        const count = await Job.find({ ...keywordFilter, jobType: categ }).countDocuments();
+
+         // Log detailed information
+        console.log({
+            keywordFilter,
+            categ,
+            pageSize,
+            skip: pageSize * (page - 1),
+            page,
+            count
+        });
+
         // .skip() : Skips the number of jobs that were displayed in the previous pages, thus allowing pagination
         // .limit() : Limits the number of jobs fetched to the pageSize
         const jobs = await Job
-            .find({...keyword})
+            .find({...keyword, jobType: categ})
             .skip(pageSize * (page - 1))
-            .limit(pageSize)
-        ;
+            .limit(pageSize);
 
         res.status(200).json({
             success: true,
@@ -100,7 +118,7 @@ export const showJobs = async(req, res, next) => {
 };
 
 // All jobs
-export const allJobs = async(req, res, next) => {
+export const allJobs = async (req, res, next) => {
     
     try {
         const jobs = await Job.find();
