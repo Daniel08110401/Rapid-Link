@@ -88,30 +88,35 @@ export const showJobs = async (req, res, next) => {
     try {
         const count = await Job.find({ ...keywordFilter, jobType: categ }).countDocuments();
 
-         // Log detailed information
-        console.log({
-            keywordFilter,
-            categ,
-            pageSize,
-            skip: pageSize * (page - 1),
-            page,
-            count
-        });
-
         // .skip() : Skips the number of jobs that were displayed in the previous pages, thus allowing pagination
         // .limit() : Limits the number of jobs fetched to the pageSize
         const jobs = await Job
-            .find({...keyword, jobType: categ})
+            .find({ ...keywordFilter, jobType: categ })
             .skip(pageSize * (page - 1))
             .limit(pageSize);
+
 
         res.status(200).json({
             success: true,
             jobs,
             page,
             pages : Math.ceil(count / pageSize),
-            count
+            count,
         });
+        
+        // Log detailed information
+        console.log({
+            keywordFilter,
+            categ,
+            jobs,
+            pageSize,
+            skip: pageSize * (page - 1),
+            page,
+            count,
+            ids
+        });
+
+
     } catch (error) {
         next(error);
     };
