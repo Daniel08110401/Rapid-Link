@@ -62,7 +62,7 @@ export const singleJob = async (req, res, next) => {
 };
 
 // Show  jobs //
-//=================//
+//============//
 export const showJobs = async (req, res, next) => {
     
     // Destructure keyword and cat from query for cleaner access
