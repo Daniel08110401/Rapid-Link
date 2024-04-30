@@ -11,4 +11,17 @@ export interface JobTypeState {
     jobTypes: JobType[];   // Array of job types
     error: string | null;  // Error state, if any occurred during fetching
 };
+
+// For jobState.ts atom //
+
+export interface JobState {
+    loading: boolean;
+    jobs: Job[];
+    error: string | null;
+}
   
+export interface Job {
+    id: string;
+    title: string;
+    location: string;
+}
