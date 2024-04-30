@@ -11,9 +11,7 @@ import CardElement from '../component/CardElement';
 
 // Sample job data for a Software Engineer position
 import {
-  exampleJob1,
-  exampleJob2,
-  exampleJob3,
+  exampleJob
 } from '../dummyData/sampleJobs'
 
 
@@ -40,25 +38,25 @@ const Home: React.FC = () => {
           <Container>
             <Filterbar />
             <CardElement
-              jobTitle={exampleJob1.jobTitle}
-              description={exampleJob1.description}
-              category={exampleJob1.category}
-              location={exampleJob1.location}
-              id={exampleJob1.id}
+              jobTitle={exampleJob.data[0].jobTitle}
+              description={exampleJob.data[0].description}
+              category={exampleJob.data[0].category}
+              location={exampleJob.data[0].location}
+              id={exampleJob.data[0].id}
             />
             <CardElement
-              jobTitle={exampleJob2.jobTitle}
-              description={exampleJob2.description}
-              category={exampleJob2.category}
-              location={exampleJob2.location}
-              id={exampleJob2.id}
+              jobTitle={exampleJob.data[1].jobTitle}
+              description={exampleJob.data[1].description}
+              category={exampleJob.data[1].category}
+              location={exampleJob.data[1].location}
+              id={exampleJob.data[1].id}
             />
             <CardElement
-              jobTitle={exampleJob3.jobTitle}
-              description={exampleJob3.description}
-              category={exampleJob3.category}
-              location={exampleJob3.location}
-              id={exampleJob3.id}
+              jobTitle={exampleJob.data[2].jobTitle}
+              description={exampleJob.data[2].description}
+              category={exampleJob.data[2].category}
+              location={exampleJob.data[2].location}
+              id={exampleJob.data[2].id}
             />
           </Container>
           <Footer />
