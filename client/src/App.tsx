@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
 
-
 // Pages
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
