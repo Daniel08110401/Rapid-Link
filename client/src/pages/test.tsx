@@ -1,29 +1,25 @@
 // components/JobTypeComponent.tsx
 import React from 'react';
+
+// for recoil 
 import { useRecoilValue } from 'recoil';
 import { fetchJobTypes } from '../recoil/selectors/fetchJobTypes';
 import { fetchJobs } from '../recoil/selectors/fetchJobs';
 
-const JobTypeComponent: React.FC = () => {
-  const jobTypeData = useRecoilValue(fetchJobTypes);
+const JobComponent: React.FC = () => {
+  // const jobTypeData = useRecoilValue(fetchJobTypes);
   const jobData = useRecoilValue(fetchJobs)
 
-  if (jobTypeData.loading) {
+  if (jobData.loading) {
     return <div>Loading...</div>;
   }
 
-  if (jobTypeData.error) {
-    return <div>Error: {jobTypeData.error}</div>;
+  if (jobData.error) {
     return <div>Error: {jobData.error}</div>;
   }
 
   return (
     <div>
-      <ul>
-        {jobTypeData.jobTypes.map(jobType => (
-          <li key={jobType.id}>{jobType.name}</li>
-        ))}
-      </ul>
       
       <div>
         <h1>Job Listings</h1>
@@ -40,5 +36,5 @@ const JobTypeComponent: React.FC = () => {
   
 };
 
-export default JobTypeComponent;
+export default JobComponent;
 

@@ -3,32 +3,42 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from "recoil";
 import { Box, Container } from '@mui/material';
 
+// Recoil
+import { useRecoilValue } from 'recoil';
+// import { fetchJobTypes } from '../recoil/selectors/fetchJobTypes';
+import { fetchJobs } from '../recoil/selectors/fetchJobs';
+
+// Components
 import Header from '../component/Header';
 import Footer from '../component/Footer';
 import NavbarGlass from '../component/NavbarGlass';
 import Filterbar from '../component/Filterbar';
 import CardElement from '../component/CardElement';
 
-// Sample job data for a Software Engineer position
-import {
-  exampleJob
-} from '../dummyData/sampleJobs'
-
-
-type Params = {
-  keyword?: string;
-  location?: string;
-};
+// dummy job data //
+// import { exampleJob } from '../dummyData/sampleJobs'
 
 const Home: React.FC = () => {
+  // Filtering jobs //
+  //================//
+  const [category, setCategory] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  
+  //===================//
+  // Fetching job data //
+  //===================//
+  const jobData = useRecoilValue(fetchJobs)
+  // Error handling
+  if (jobData.error) {
+    return <div>Error: {jobData.error}</div>;
+  };
 
-  //===========//
-  // After completing job add api, complete this part for fetching the data //
-  //===========//
-  // const { keyword, location } = useParams<Params>();
-  // const [page, setPage] = useState<number>(1);
-  // const [cat, setCat] = useState<string>('');
-
+  const filteredJobs = jobData.jobs.filter((job) => (
+    (category === '' || job.jobType === category) &&
+    (location === '' || job.location === location) &&
+    (searchTerm === '' || job.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  )).slice(0, 7);
 
   return (
     <>
@@ -36,28 +46,22 @@ const Home: React.FC = () => {
           <NavbarGlass />
           <Header />
           <Container>
-            <Filterbar />
-            <CardElement
-              jobTitle={exampleJob.data[0].jobTitle}
-              description={exampleJob.data[0].description}
-              category={exampleJob.data[0].category}
-              location={exampleJob.data[0].location}
-              id={exampleJob.data[0].id}
+            <Filterbar 
+              onCategoryChange={setCategory}
+              onLocationChange={setLocation}
+              onSearch={setSearchTerm}
             />
+            {filteredJobs.map((job, i) => (
             <CardElement
-              jobTitle={exampleJob.data[1].jobTitle}
-              description={exampleJob.data[1].description}
-              category={exampleJob.data[1].category}
-              location={exampleJob.data[1].location}
-              id={exampleJob.data[1].id}
+              key={job.id}
+              company={job.company}
+              jobTitle={job.title}
+              description={job.description}
+              category={job.jobType}
+              location={job.location}
+              id={String(i+=1)}
             />
-            <CardElement
-              jobTitle={exampleJob.data[2].jobTitle}
-              description={exampleJob.data[2].description}
-              category={exampleJob.data[2].category}
-              location={exampleJob.data[2].location}
-              id={exampleJob.data[2].id}
-            />
+            ))}
           </Container>
           <Footer />
       </Box>

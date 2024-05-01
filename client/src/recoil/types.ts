@@ -12,16 +12,21 @@ export interface JobTypeState {
     error: string | null;  // Error state, if any occurred during fetching
 };
 
-// For jobState.ts atom //
 
+// Defines the overall jobs
 export interface JobState {
     loading: boolean;
     jobs: Job[];
     error: string | null;
 }
-  
+
+// Defines the structure of a sing job entry
 export interface Job {
     id: string;
+    company: string;
     title: string;
+    jobType: string;
+    description: string;
     location: string;
+    deadline: string;
 }
