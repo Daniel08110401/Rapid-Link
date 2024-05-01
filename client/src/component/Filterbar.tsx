@@ -8,7 +8,14 @@ import {
   SubmitButton
 } from '../style/FilterBarStyles';
 
-const Filterbar: React.FC = () => {
+interface FilterBarProps {
+  onCategoryChange: (category: string) => void;
+  onLocationChange: (location: string) => void;
+  onSearch: (term: string) => void;
+};
+
+
+const Filterbar: React.FC<FilterBarProps> = ({onCategoryChange, onLocationChange, onSearch}) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -18,28 +25,26 @@ const Filterbar: React.FC = () => {
   const handleSubmit = (): void => {
     // Implementation for what happens when you submit the form
     console.log(`Searching for: ${searchTerm}`);
+    onSearch(searchTerm);
   };
 
   return (
     <FilterBarContainer>
       <FilterSection>
-        <FilterLabel>Company</FilterLabel>
-        <Dropdown>
-          <option value="">All</option>
-          <option value="Corporate">Corporate</option>
-          <option value="StartUps">StartUps</option>
-        </Dropdown>
         <FilterLabel>Job Categories</FilterLabel>
-        <Dropdown>
+        <Dropdown onChange={(e) => onCategoryChange(e.target.value)}>
           <option value="">All</option>
           <option value="IT/Software">IT/Software</option>
           <option value="Marketing">Marketing</option>
+          <option value="Business">Business</option>
         </Dropdown>
         <FilterLabel>Location</FilterLabel>
-        <Dropdown>
+        <Dropdown onChange={(e) => onLocationChange(e.target.value)}>
           <option value="">All</option>
           <option value="Seoul">Seoul</option>
           <option value="Busan">Busan</option>
+          <option value="New York">New York</option>
+          <option value="LA">LA</option>
         </Dropdown>
       </FilterSection>
       <FilterSection>
