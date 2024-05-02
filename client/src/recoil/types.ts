@@ -1,6 +1,6 @@
 // Defines the structure of a single job type entry
 export interface JobType {
-    id: string;
+    _id: string;
     name: string;
     description?: string;  // Optional description property
 };
@@ -22,11 +22,18 @@ export interface JobState {
 
 // Defines the structure of a sing job entry
 export interface Job {
-    id: string;
+    _id: string;
+    available: boolean;
     company: string;
     title: string;
     jobType: string;
     description: string;
     location: string;
     deadline: string;
+}
+
+export interface JobResponse {
+    job?: Job;
+    loading: boolean;
+    error?: any;  // Make error optional since it might not always be present
 }

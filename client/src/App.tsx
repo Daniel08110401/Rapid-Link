@@ -7,6 +7,7 @@ import theme from './theme';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Test from './pages/test';
+import JobDetailPage from './pages/JobDetailPage';
 
 
 const App: React.FC = () => {  
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             <Route path='/' element={<Home />} />
             <Route path='*' element={<NotFound />} />
             <Route path='/test' element={<Test />} />
+            <Route path="/job/:jobId" element={<JobDetailPage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
