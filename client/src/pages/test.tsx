@@ -25,7 +25,7 @@ const JobComponent: React.FC = () => {
         <h1>Job Listings</h1>
         <ul>
           {jobData.jobs.map(job => (
-            <li key={job.id}>
+            <li key={job._id}>
               {job.title} - {job.location}
             </li>
           ))}

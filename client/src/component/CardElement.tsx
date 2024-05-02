@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTheme, Typography } from '@mui/material';
+import { useTheme, Typography, Button} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink to avoid naming conflict
 
 // If using styled components separately and not importing Button directly
 import {
@@ -44,8 +44,9 @@ const CardElement: React.FC<CardElementProps> = ({ company, jobTitle, descriptio
       </StyledCardContent>
       <StyledCardActions>
         <StyledButton disableElevation variant='contained' size="small" startIcon={<AddIcon />}>
-          <Link to={`/job/${id}`} style={{ textDecoration: "none", color: "white" }}>More Details</Link>
+          <RouterLink to={`/job/${id}`} style={{ textDecoration: "none", color: "white" }}>More Details</RouterLink>
         </StyledButton>
+        
       </StyledCardActions>
     </StyledCard>
   );
