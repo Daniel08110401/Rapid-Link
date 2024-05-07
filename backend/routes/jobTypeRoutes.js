@@ -8,9 +8,17 @@ const router = express.Router();
 //=================//
 
 // /api/type/create
-router.post('/type/create', isAuthenticated, createJobType);
+// router.post('/type/create', isAuthenticated, createJobType);
+
+// as the user sign in/out feature is not created yet, remove the isAuthenticated
+router.post('/type/create', createJobType);
+
 
 // /api/type/jobs
-router.get('/type/jobs', isAuthenticated, allJobType);
+// router.get('/type/jobs', isAuthenticated, allJobType);
+
+// as the user sign in/out feature is not created yet, remove the isAuthenticated
+router.get('/type/jobs', allJobType);
+
 
 export default router;
