@@ -20,7 +20,7 @@ export const createJobType = async(req, res, next) => {
 };
 
 
-// All Job Category //
+// Get all job categories //
 //==================//
 export const allJobType = async(req, res, next) => {
     try {

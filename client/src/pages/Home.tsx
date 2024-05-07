@@ -8,8 +8,6 @@ import { useRecoilValue } from 'recoil';
 // import { fetchJobTypes } from '../recoil/selectors/fetchJobTypes';
 import { fetchJobs } from '../recoil/selectors/fetchJobs';
 
-import { combinedJobSelector } from '../recoil/selectors/combinedJobSelector';
-
 // Components
 import Header from '../component/Header';
 import Footer from '../component/Footer';
@@ -31,16 +29,14 @@ const Home: React.FC = () => {
 
   // Fetching job data 
   const jobData = useRecoilValue(fetchJobs)
-  const combinedJobData = useRecoilValue(combinedJobSelector)
+
   // Error handling
   if (jobData.error) {
     return <div>Error: {jobData.error}</div>;
   };
 
-  // if (!combinedJobData.length) {
-  //   return <div>Loading jobs or no jobs available.</div>;
-  // };
 
+  // Filterting feature
   const filteredJobs = jobData.jobs.filter((job) => (
     (category === '' || job.jobType === category) &&
     (location === '' || job.location === location) &&
@@ -53,14 +49,10 @@ const Home: React.FC = () => {
   //   (searchTerm === '' || job.title.toLowerCase().includes(searchTerm.toLowerCase()))
   // ));
 
-
   const pageCount = Math.ceil(filteredJobs.length / jobsPerPage); // pages needed to display all filtered jobs 
   const indexOfLastJob = page * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
-
-
-
 
   return (
     <>
@@ -97,6 +89,6 @@ const Home: React.FC = () => {
       </Box>
     </>
   );
-}
+};
 
 export default Home;
