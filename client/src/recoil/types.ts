@@ -38,3 +38,27 @@ export interface JobResponse {
     loading: boolean;
     error?: string | null;  // Make error optional since it might not always be present
 };
+
+
+// User State //
+// =============== //
+
+// export interface userState {
+//     loading: boolean,
+//     userInfo: null,
+//     isAuthenticated: false,
+//     error: null
+// };
+
+// export interface userProfileState {
+//     loading: boolean,
+//     user: null,
+//     error: null
+// };
+
+// // Logout state
+// export interface userLogoutState {
+//     loading: boolean,
+//     error: null
+// };
+  

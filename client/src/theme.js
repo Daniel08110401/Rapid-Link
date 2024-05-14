@@ -13,5 +13,15 @@ const theme = createTheme({
     }
 });
 
+// Convert MUI theme to a simple object for styled-components
+// const themeName = {
+//     colors: {
+//       primaryMain: muiTheme.palette.primary.main,
+//       secondaryMain: muiTheme.palette.secondary.main,
+//       secondaryGreen: muiTheme.palette.secondary.green
+//     }
+// };
+  
+
 export default theme;
 
