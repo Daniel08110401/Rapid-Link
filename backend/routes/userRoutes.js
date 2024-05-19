@@ -11,7 +11,7 @@ const router = express.Router();
 //=============//
 
 // Admin user roles //
-//=============//
+//=================//
 
 // /api/myProfile
 router.get('/allusers', isAuthenticated, isAdmin, allUsers);

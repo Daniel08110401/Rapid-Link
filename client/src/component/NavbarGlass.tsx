@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import UserMenu from '../component/UserMenu';
 import {
   NavBar,
   Logo,
@@ -39,11 +40,12 @@ const NavbarGlass: React.FC = () => {
           <SearchBar expanded={searchExpanded} />
           <SearchIcon onClick={handleSearchIconClick}>🔍</SearchIcon>
         </SearchBarContainer>
-          <RouterLink to={`/login`} style={{ textDecoration: "none", color: "inherit" }}>
+          {/* <RouterLink to={`/login`} style={{ textDecoration: "none", color: "inherit" }}>
             <MenuItem>
               Sign In
             </MenuItem>
-          </RouterLink>
+          </RouterLink> */}
+          <UserMenu />
       </RightMenu>
     </NavBar>
   );
