@@ -13,6 +13,7 @@ const theme = createTheme({
     }
 });
 
+export default theme;
 // Convert MUI theme to a simple object for styled-components
 // const themeName = {
 //     colors: {
@@ -23,5 +24,4 @@ const theme = createTheme({
 // };
   
 
-export default theme;
 
