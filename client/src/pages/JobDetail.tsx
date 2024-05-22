@@ -32,7 +32,7 @@ const JobDetailPage = () => {
     }
 
     // Now TypeScript knows jobData must be a Job object
-    const { title, company, description, location, deadline, jobType} = jobData.job; // Assuming jobData is now structured as { job: Job }
+    const { title, company, description, location, deadline, jobType, url} = jobData.job; // Assuming jobData is now structured as { job: Job }
 
 
     return (
@@ -54,7 +54,7 @@ const JobDetailPage = () => {
                     description={description}
                     jobType={jobType}
                     location={location}
-                    companyUrl={title} 
+                    companyUrl={url} 
                     deadline={deadline}               
                 />
 

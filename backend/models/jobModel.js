@@ -50,6 +50,11 @@ const jobSchema = new Schema({
         ref: "User",
         required: true
     },
+
+    url:{
+        type: String,
+        required : [true, 'Url is required'],
+    }   
     
 }, { timestamps: true })
 

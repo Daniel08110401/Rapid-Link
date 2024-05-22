@@ -31,9 +31,8 @@ const JobInformation: React.FC<JobDetailsPage> = ({
       <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
-      <Link href={companyUrl} underline="hover" color="inherit" target="_blank">
-        <Typography variant="subtitle1">{companyName}, {jobType} - {location}</Typography>
-      </Link>
+      <Typography variant="subtitle1">{companyName}, {jobType} - {location}</Typography>
+
       {/* <Typography variant="subtitle2" color="textSecondary" gutterBottom>
         {postedTime} · {applicants}
       </Typography> */}
@@ -41,9 +40,11 @@ const JobInformation: React.FC<JobDetailsPage> = ({
         {employmentType} · {companySize} employees · {department}
       </Typography> */}
       <Box sx={{ mt: 2, mb: 1 }}>
-        <Button variant="contained" color="primary" sx={{ mr: 1 }}>
-          Easy Apply
-        </Button>
+        <Link href={companyUrl} underline="hover" color="inherit" target="_blank">
+          <Button variant="contained" color="primary" sx={{ mr: 1 }}>
+            Apply
+          </Button>
+        </Link>
         <Button variant="outlined" color="primary">
           Save
         </Button>
