@@ -38,11 +38,6 @@ const NavbarGlass: React.FC = () => {
           <SearchBar expanded={searchExpanded} />
           <SearchIcon onClick={handleSearchIconClick}>🔍</SearchIcon>
         </SearchBarContainer>
-          {/* <RouterLink to={`/login`} style={{ textDecoration: "none", color: "inherit" }}>
-            <MenuItem>
-              Sign In
-            </MenuItem>
-          </RouterLink> */}
           <UserMenu />
       </RightMenu>
     </NavBar>

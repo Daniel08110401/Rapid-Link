@@ -39,15 +39,7 @@ const JobDetailPage = () => {
         
         <Box>
             <NavbarGlass />
-            <Header />
-                {/* <Container>
-                    <Typography variant="h4">{title}</Typography>
-                    <Typography variant="subtitle1">{company}</Typography>
-                    <Typography variant="body1">{description}</Typography>
-                    <Typography variant="body2">Location: {location}</Typography>
-                    <Typography variant="caption">Deadline: {deadline}</Typography>
-                </Container> */}
-                
+            <Header />        
                 <JobInformation 
                     companyName={company}
                     title={title}
@@ -57,7 +49,6 @@ const JobDetailPage = () => {
                     companyUrl={url} 
                     deadline={deadline}               
                 />
-
             <Footer />
         </Box>
     );

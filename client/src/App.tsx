@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Test from './pages/test';
 import JobDetailPage from './pages/JobDetail';
 import LogIn from './pages/Login';
+import UserProfile from './pages/user/UserProfile'
 
 
 
@@ -59,6 +60,7 @@ const App: React.FC = () => {
               <Route path='/login' element={<LogIn />} />
               <Route path='/test' element={<Test />} />
               <Route path='*' element={<NotFound />} />
+              <Route path='/user/profile' element={<UserProfile />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
