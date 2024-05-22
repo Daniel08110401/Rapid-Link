@@ -29,11 +29,9 @@ const NavbarGlass: React.FC = () => {
         </RouterLink>
       </LeftMenu>
       <CenterMenu>
-        <MenuItem>Community</MenuItem>
         <MenuItem>Jobs</MenuItem>
         <MenuItem>Internship Calendar</MenuItem>
-        <MenuItem>Companies</MenuItem>
-        <MenuItem>Salaries</MenuItem>
+        <MenuItem>Community</MenuItem>
       </CenterMenu>
       <RightMenu>
         <SearchBarContainer>

@@ -15,6 +15,7 @@ export interface Job {
     description: string;
     location: string;
     deadline: string;
+    url: string;
 }
 
 // Defines the overall state structure for job types
