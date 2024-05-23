@@ -1,11 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # MongoDB pipsetup
 # Setup MongoDB connection with disabled SSL verification for testing purposes
-client = MongoClient('mongodb+srv://leeseungho453:Summerbird12@rapidlinkapi.1pjznaa.mongodb.net/?retryWrites=true&w=majority&appName=rapidlinkapi',
-                     tlsAllowInvalidCertificates=True)
+dataBase = os.environ.get('DATABASE')
+client = MongoClient(dataBase, tlsAllowInvalidCertificates=True)
 db = client['test']  
 jobs_collection = db['jobs']
 
