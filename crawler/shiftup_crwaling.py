@@ -3,7 +3,7 @@ import requests
 from pymongo import MongoClient
 
 # MongoDB setup
-client = MongoClient('mongodb+srv://leeseungho453:Summerbird12@rapidlinkapi.1pjznaa.mongodb.net/?retryWrites=true&w=majority&appName=rapidlinkapi',
+client = MongoClient('',
                      tlsAllowInvalidCertificates=True)
 db = client['test'] 
 jobs_collection = db['jobs']
