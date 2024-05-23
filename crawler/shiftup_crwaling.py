@@ -1,10 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # MongoDB setup
-client = MongoClient('',
-                     tlsAllowInvalidCertificates=True)
+dataBase = os.environ.get('DATABASE')
+client = MongoClient(dataBase, tlsAllowInvalidCertificates=True)
 db = client['test'] 
 jobs_collection = db['jobs']
 
