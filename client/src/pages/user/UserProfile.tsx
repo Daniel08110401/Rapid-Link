@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { useAuthCheck } from '../../recoil/stateHooks/UserAuthCheck';
 
-const UserProfile = () => {
+const UserProfile: React.FC = () => {
+  const authenticated = useAuthCheck();
+
+  if (!authenticated) {
+    return null;
+  }
+
   return (
-    <div>UserProfile</div>
-  )
-}
+    <div>
+      <h1>Profile Page</h1>
+    </div>
+  );
+};
 
 export default UserProfile;
