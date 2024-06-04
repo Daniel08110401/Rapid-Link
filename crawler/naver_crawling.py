@@ -13,7 +13,7 @@ db = client['test']
 jobs_collection = db['jobs']
 
 # URL setup
-url = "https://recruit.navercloudcorp.com/rcrt/view.do?annoId=30002087&lang=ko"
+url = "https://recruit.navercloudcorp.com/rcrt/view.do?annoId=30002106&lang=ko"
 html = requests.get(url).text
 
 # Parse the HTML
@@ -78,6 +78,6 @@ result = jobs_collection.update_one(
 
 # Check the result of the update
 if result.upserted_id:
-    print("Inserted a new job:", job_data)
+    print("Inserted a new job for Naver")
 else:
     print("Job already exists. No new data inserted.")
