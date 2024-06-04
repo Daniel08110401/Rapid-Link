@@ -9,7 +9,7 @@ import { JobResponse } from '../recoil/types';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
 import NavbarGlass from '../component/NavbarGlass';
-import JobInformation from '../component/JobInformation';
+import JobInformation from '../component/JobInformation';
 
 const JobDetailPage = () => {
     const { jobId } = useParams<{ jobId?: string }>();  // Ensuring TypeScript knows that jobId can be undefined
@@ -36,7 +36,6 @@ const JobDetailPage = () => {
 
 
     return (
-        
         <Box>
             <NavbarGlass />
             <Header />        

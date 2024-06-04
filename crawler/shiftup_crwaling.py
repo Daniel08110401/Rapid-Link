@@ -12,7 +12,7 @@ db = client['test']
 jobs_collection = db['jobs']
 
 # Setup
-url = "https://shiftup.career.greetinghr.com/o/69851"
+url = "https://shiftup.career.greetinghr.com/o/69850"
 html = requests.get(url).text
 soup = BeautifulSoup(html, 'html.parser')
 
