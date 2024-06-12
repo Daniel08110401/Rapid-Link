@@ -10,11 +10,13 @@ from parsers.shiftup_parser import shiftup_parer
 
 load_dotenv()
 
+
+# 반복작업이고 crawler 코드를 런 할때만 필요 하기에 if __name__ == "__main__"에서 실행될때만 
 # MongoDB setup
-dataBase = os.environ.get('DATABASE')
-client = MongoClient(dataBase, tlsAllowInvalidCertificates=True)
-db = client['test']
-jobs_collection = db['jobs']
+# dataBase = os.environ.get('DATABASE')
+# client = MongoClient(dataBase, tlsAllowInvalidCertificates=True)
+# db = client['test']
+# jobs_collection = db['jobs']
 
 class Crawler:
     def __init__(self, db_collection):
@@ -40,6 +42,11 @@ class Crawler:
             print("Job already exists. No new data inserted.")
 
 if __name__ == "__main__":
+    # MongoDB setup
+    dataBase = os.environ.get('DATABASE')
+    client = MongoClient(dataBase, tlsAllowInvalidCertificates=True)
+    db = client['test']
+    jobs_collection = db['jobs']
     crawler = Crawler(jobs_collection)
-    crawler.run("https://recruit.navercloudcorp.com/rcrt/view.do?annoId=30002106&lang=ko", naver_parser)
+    crawler.run("https://careers.naver.com/job/detail/30002124", naver_parser)
 
