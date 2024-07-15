@@ -24,7 +24,7 @@ export const fetchCombinedJobs = selector({
                 jobTypeMap.set(jobType._id, jobType.jobTypeName);
             });
 
-            // console.log("Job type map:", Array.from(jobTypeMap.entries()));
+            console.log("Job type map:", Array.from(jobTypeMap.entries()));
 
             // Combining job data with job type names
             const combinedJobs = jobResponse.data.jobs.map(job => {
