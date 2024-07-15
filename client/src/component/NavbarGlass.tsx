@@ -34,10 +34,10 @@ const NavbarGlass: React.FC = () => {
         <MenuItem>Community</MenuItem>
       </CenterMenu>
       <RightMenu>
-        <SearchBarContainer>
+        {/* <SearchBarContainer>
           <SearchBar expanded={searchExpanded} />
           <SearchIcon onClick={handleSearchIconClick}>🔍</SearchIcon>
-        </SearchBarContainer>
+        </SearchBarContainer> */}
           <UserMenu />
       </RightMenu>
     </NavBar>
