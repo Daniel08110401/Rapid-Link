@@ -5,7 +5,6 @@ import { Box, Container, Pagination, Stack } from '@mui/material';
 
 // Recoil //
 import { useRecoilValue } from 'recoil';
-// import { fetchJobTypes } from '../recoil/selectors/fetchJobTypes';
 import { fetchJobs } from '../recoil/selectors/fetchJobs';
 
 // Components
@@ -42,12 +41,6 @@ const Home: React.FC = () => {
     (location === '' || job.location === location) &&
     (searchTerm === '' || job.title.toLowerCase().includes(searchTerm.toLowerCase()))
   ));
-
-  // const filteredJobs = combinedJobData.filter(job => (
-  //   (category === '' || (job.jobType && job.jobType.name === category)) &&
-  //   (location === '' || job.location === location) &&
-  //   (searchTerm === '' || job.title.toLowerCase().includes(searchTerm.toLowerCase()))
-  // ));
 
   const pageCount = Math.ceil(filteredJobs.length / jobsPerPage); // pages needed to display all filtered jobs 
   const indexOfLastJob = page * jobsPerPage;

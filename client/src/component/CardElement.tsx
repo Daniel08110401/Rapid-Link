@@ -38,9 +38,9 @@ const CardElement: React.FC<CardElementProps> = ({ company, jobTitle, descriptio
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {category}
         </Typography>
-        <Typography variant="body2">
+        {/* <Typography variant="body2">
           Description: {description.split(" ").slice(0, 15).join(" ") + "..."}
-        </Typography>
+        </Typography> */}
       </StyledCardContent>
       <StyledCardActions>
         <StyledButton disableElevation variant='contained' size="small" startIcon={<AddIcon />}>
