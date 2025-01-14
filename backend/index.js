@@ -62,18 +62,6 @@ app.use('/api', jobTypeRoutes);
 app.use('/api', jobRoutes);
 
 
-// // Example usage of the model to create a new document
-// import RawJobData from './models/rawJobModel.js'
-// const newJobData = new RawJobData({
-//     url: "naver.com",
-//     html_content: "<div>Example Job Description HTML Content</div>"
-// });
-
-// newJobData.save()
-//     .then(doc => console.log('Document saved:', doc))
-//     .catch(err => console.log('Error saving document:', err));
-
-
 // Error middleware //
 app.use(errorHandler);
 
