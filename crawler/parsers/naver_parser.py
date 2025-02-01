@@ -1,28 +1,54 @@
 
-def naver_parser(soup):
-    job_title_div = soup.find('div', class_='card_title_box')
-    job_detail_div = soup.find('div', class_='detail_wrap')
+# def naver_parser(soup):
+#     job_title_div = soup.find('div', class_='card_title_box')
+#     job_detail_div = soup.find('div', class_='detail_wrap')
 
-    if job_title_div:
-        title = job_title_div.find('h4', class_='card_title').get_text(strip=True)
-        details = job_title_div.find('dl', class_='card_info').find_all('dd', class_='info_text')
-        details_text = [detail.get_text(strip=True) for detail in details]
-        company = details_text[0]
-        jobType = details_text[1]
-        deadline = details_text[5]
+#     if job_title_div:
+#         title = job_title_div.find('h4', class_='card_title').get_text(strip=True)
+#         details = job_title_div.find('dl', class_='card_info').find_all('dd', class_='info_text')
+#         details_text = [detail.get_text(strip=True) for detail in details]
+#         company = details_text[0]
+#         jobType = details_text[1]
+#         deadline = details_text[5]
 
-    if job_detail_div:
-        paragraphs = job_detail_div.find_all('p')
-        full_description = ' '.join([p.get_text(strip=True) for p in paragraphs])
+#     if job_detail_div:
+#         paragraphs = job_detail_div.find_all('p')
+#         full_description = ' '.join([p.get_text(strip=True) for p in paragraphs])
 
-    job_data = {
-        "company": company,
-        "description": full_description,
-        "url": soup.base_url,
-        "title": title,
-        "jobType": jobType,
-        "location": "South Korea",
-        "deadline": deadline,
-        "available": True
-    }
-    return job_data
+#     job_data = {
+#         "company": company,
+#         "description": full_description,
+#         "url": soup.base_url,
+#         "title": title,
+#         "jobType": jobType,
+#         "location": "South Korea",
+#         "deadline": deadline,
+#         "available": True
+#     }
+#     return job_data
+
+from bs4 import BeautifulSoup
+import requests
+
+class NaverParser:
+    def __init__(self):
+        self.base_url = "https://recruit.navercorp.com/rcrt/view.do?annoId="
+
+    def list_parser(self, careers_page_url):
+        """Parse the careers page for job listings."""
+        response = requests.get(careers_page_url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        job_cards = soup.select("div.card_wrap > ul.card_list > li.card_item")
+        job_list = []
+
+        for card in job_cards:
+            title = card.select_one("h4.card_title").get_text(strip=True)
+            onclick_attr = card.select_one("a.card_link")["onclick"]
+            job_id = onclick_attr.split("'")[1]
+            job_link = f"{self.base_url}{job_id}"
+
+            job_list.append({"url": job_link, "title": title})
+
+        return job_list
